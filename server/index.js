@@ -107,7 +107,7 @@ initializeDatabase();
 // Helper function to run database queries with promises
 const dbRun = (sql, params = []) => {
   return new Promise((resolve, reject) => {
-    db.run(sql, params, function(err) {
+    db.run(sql, params, function (err) {
       if (err) reject(err);
       else resolve({ lastID: this.lastID, changes: this.changes });
     });
@@ -536,3 +536,6 @@ app.get('/api/health', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+const serverless = require('serverless-http');
+module.exports = serverless(app);
